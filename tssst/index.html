@@ -1,0 +1,43 @@
+<!DOCTYPE >
+<html>
+  <head>
+    <title>Cooking with artyom.js</title>
+    <!-- Important to load artyom in the head tag, this give time to load all the voices in the browser -->
+    <script type="text/javascript" src="artyom.window.js"></script>
+
+    <script>
+      // Create a global accesible instance of artyom
+      window.artyom = new Artyom();
+    </script>
+  </head>
+  <body>
+    <a href="https:www.google.com" id="cc"></a>
+    <script>
+      artyom.addCommands({
+        smart: true, // We need to say that this command is smart !
+        indexes: ["How many people live in *"], // * = the spoken text after How many people live in is recognized
+        action: function (i, wildcard) {
+          switch (wildcard) {
+            case "berlin":
+              alert("Why should i know something like this ?");
+              break;
+            case "paris":
+              alert("I don't know");
+              break;
+            default:
+              alert("I don't know what city is . try to increase the switch cases !");
+              document.getElementById("cc").click();
+              break;
+          }
+        },
+      });
+
+      artyom.initialize({
+        lang: "en-GB", // More languages are documented in the library
+        continuous: true, //if you have https connection, you can activate continuous mode
+        debug: true, //Show everything in the console
+        listen: true, // Start listening when this function is triggered
+      });
+    </script>
+  </body>
+</html>
